@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BrandGen AI — Generate powerful, consistent marketing content for Instagram, Email, Ads, and Blogs instantly using AI.">
+    <title>BrandGen AI — AI Marketing Content Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background Orbs -->
+    <div class="bg-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="header fade-in">
+        <div class="header-badge">
+            <i class="fas fa-bolt"></i> AI Powered
+        </div>
+        <h1 class="header-title">
+            <span class="gradient-text">BrandGen</span> AI
+        </h1>
+        <p class="header-subtitle">Generate powerful marketing content instantly</p>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Input Section -->
+        <section class="input-section fade-in" id="input-section">
+            <div class="card input-card">
+                <div class="card-header">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    <h2>Create Your Content</h2>
+                </div>
+                <form id="brand-form" autocomplete="off">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="brand-name">Brand Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="brand-name" placeholder="e.g. Lumina Beauty" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="product">Product</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-box-open"></i>
+                                <input type="text" id="product" placeholder="e.g. Organic Face Serum" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="audience">Target Audience</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-users"></i>
+                                <input type="text" id="audience" placeholder="e.g. Women aged 25-40" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="tone">Tone</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-palette"></i>
+                                <select id="tone" required>
+                                    <option value="" disabled selected>Select a tone</option>
+                                    <option value="Fun">🎉 Fun</option>
+                                    <option value="Professional">💼 Professional</option>
+                                    <option value="Luxury">✨ Luxury</option>
+                                    <option value="Casual">😊 Casual</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-generate" id="btn-generate">
+                        <i class="fas fa-sparkles"></i>
+                        <span>Generate Content</span>
+                        <div class="btn-shimmer"></div>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading Spinner -->
+        <section class="loading-section hidden" id="loading-section">
+            <div class="loader-container">
+                <div class="loader">
+                    <div class="loader-ring"></div>
+                    <div class="loader-ring"></div>
+                    <div class="loader-ring"></div>
+                    <i class="fas fa-robot loader-icon"></i>
+                </div>
+                <p class="loader-text">AI is crafting your content<span class="dots"></span></p>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output-section hidden" id="output-section">
+            <div class="output-header fade-in">
+                <h2><i class="fas fa-check-circle"></i> Your Content is Ready</h2>
+                <button class="btn-regenerate" id="btn-regenerate">
+                    <i class="fas fa-rotate"></i> Regenerate
+                </button>
+            </div>
+
+            <div class="output-grid">
+                <!-- Instagram Card -->
+                <div class="card output-card fade-in" id="card-instagram">
+                    <div class="card-header instagram-header">
+                        <div class="card-icon instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h3>Instagram Caption</h3>
+                        <button class="btn-copy" data-target="instagram-content" aria-label="Copy Instagram caption">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="card-body" id="instagram-content"></div>
+                </div>
+
+                <!-- Email Card -->
+                <div class="card output-card fade-in" id="card-email">
+                    <div class="card-header email-header">
+                        <div class="card-icon email-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Content</h3>
+                        <button class="btn-copy" data-target="email-content" aria-label="Copy email content">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="card-body" id="email-content"></div>
+                </div>
+
+                <!-- Ad Copy Card -->
+                <div class="card output-card fade-in" id="card-ad">
+                    <div class="card-header ad-header">
+                        <div class="card-icon ad-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3>Ad Copy</h3>
+                        <button class="btn-copy" data-target="ad-content" aria-label="Copy ad copy">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="card-body" id="ad-content"></div>
+                </div>
+
+                <!-- Blog Intro Card -->
+                <div class="card output-card fade-in" id="card-blog">
+                    <div class="card-header blog-header">
+                        <div class="card-icon blog-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h3>Blog Introduction</h3>
+                        <button class="btn-copy" data-target="blog-content" aria-label="Copy blog introduction">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="card-body" id="blog-content"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer fade-in">
+        <p>Built for Hackathon Demo 🚀</p>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast hidden" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Copied to clipboard!</span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
